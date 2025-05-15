@@ -15,10 +15,10 @@ fish_color_redirection FAB387
 
 fish_color_end F5C2E7
 fish_color_error F38BA8
-fish_color_param FAB387 --underline
+fish_color_param FAB387
 
 # This needs to be reworked.
-fish_color_valid_path 74C7EC
+fish_color_valid_path 74C7EC --underline
 fish_color_option B4BEFE
 
 fish_color_comment 9399B2
