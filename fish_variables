@@ -22,7 +22,7 @@ SETUVAR fish_color_param:FAB387
 SETUVAR fish_color_quote:A6E3A1
 SETUVAR fish_color_redirection:FAB387
 SETUVAR fish_color_search_match:\x1d
-SETUVAR fish_color_selection:\x2d\x2dbackground\x3d2A2B3C
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3d45475A
 SETUVAR fish_color_status:EBA0AC
 SETUVAR fish_color_user:F2CDCD
 SETUVAR fish_color_valid_path:74C7EC\x1e\x2d\x2dunderline
