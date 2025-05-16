@@ -22,7 +22,7 @@ fish_color_valid_path 74C7EC --underline
 fish_color_option B4BEFE
 
 fish_color_comment 9399B2
-fish_color_selection --background=2A2B3C
+fish_color_selection --background=45475A
 fish_color_operator 89DCEB
 fish_color_escape F5C2E7
 fish_color_autosuggestion 6C7086
