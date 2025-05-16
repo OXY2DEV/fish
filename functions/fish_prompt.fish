@@ -1,4 +1,11 @@
 function fish_prompt -d "Fancy prompt for fish."
+	#|fS "feat: Last status'
+	# Must be retrieved before everything else.
+
+	set -l status_part $(get_status $status);
+
+	#|fE
+
 	if test -n "$transient"; and test $transient -eq 1;
 		set -g transient 0;
 
@@ -7,13 +14,6 @@ function fish_prompt -d "Fancy prompt for fish."
 
 		return;
 	end
-
-	#|fS "feat: Last status'
-	# Must be retrieved before everything else.
-
-	set -l status_part $(get_status $status);
-
-	#|fE
 
 	#|fS "feat: Get Vi mode"
 
