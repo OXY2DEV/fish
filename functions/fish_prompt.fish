@@ -1,40 +1,48 @@
 function fish_prompt
-    set_color $fish_color_cwd
-    echo $(fancy_path)
+	set -l path_bg 38394B;
+	set -l mode_hl;
 
 	if test "$fish_bind_mode" = 'insert'
 		set_color 1E1E2E --background=CDD6F4;
 		echo -n "  ";
 
-		set_color --background=CDD6F4;
+		set mode_hl CDD6F4;
+		set_color $path_bg --background=CDD6F4;
 		echo -n "▐";
 	else if test "$fish_bind_mode" = 'visual'
 		set_color 1E1E2E --background=CBA6F7;
 		echo -n "  ";
 
-		set_color --background=CBA6F7;
+		set mode_hl CBA6F7;
+		set_color $path_bg --background=CBA6F7;
 		echo -n "▐";
 	else if test "$fish_bind_mode" = 'replace'
 		set_color 1E1E2E --background=F5C2E7;
 		echo -n "  ";
 
-		set_color --background=F5C2E7;
+		set mode_hl F5C2E7;
+		set_color $path_bg --background=F5C2E7;
 		echo -n "▐";
 	else if test "$fish_bind_mode" = 'replace_one'
 		set_color 1E1E2E --background=FAB387;
 		echo -n "  ";
 
-		set_color --background=FAB387;
+		set mode_hl FAB387;
+		set_color $path_bg --background=FAB387;
 		echo -n "▐";
 	else
 		set_color 1E1E2E --background=A6E3A1;
 		echo -n "  ";
 
-		set_color --background=A6E3A1;
+		set mode_hl A6E3A1;
+		set_color $path_bg --background=A6E3A1;
 		echo -n "▐";
 	end
-    # set_color --background=2F373F
-    # echo -n ' ╰╴ '
-    set_color normal
-    # echo -n ' '
+
+    echo -e $(fancy_path);
+    set_color normal;
+
+    set_color $mode_hl;
+	echo -n "╰ ";
+    set_color normal;
 end
