@@ -1,6 +1,5 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export MANWIDTH:20
 SETUVAR __fish_initialized:3800
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:6C7086
@@ -29,7 +28,7 @@ SETUVAR fish_color_user:F2CDCD
 SETUVAR fish_color_valid_path:74C7EC\x1e\x2d\x2dunderline
 SETUVAR fish_features:no\x2dkeyboard\x2dprotocols
 SETUVAR fish_greeting:
-SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_key_bindings:fish_vi_key_bindings
 SETUVAR fish_pager_color_background:\x1d
 SETUVAR fish_pager_color_completion:9399B2
 SETUVAR fish_pager_color_description:94E2D5
@@ -44,9 +43,3 @@ SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
 SETUVAR fish_user_paths:/data/data/com\x2etermux/files/home/go/bin/\x1e/data/data/com\x2etermux/files/home/\x2ecargo/bin/\x1e/data/data/com\x2etermux/files/usr/bin/
-SETUVAR sponge_allow_previously_successful:true
-SETUVAR sponge_delay:2
-SETUVAR sponge_filters:sponge_filter_failed\x1esponge_filter_matched
-SETUVAR sponge_purge_only_on_exit:false
-SETUVAR sponge_regex_patterns:\x1d
-SETUVAR sponge_successful_exit_codes:0
