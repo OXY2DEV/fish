@@ -1,4 +1,13 @@
-function fish_prompt
+function fish_prompt -d "Fancy prompt for fish."
+	#|fS "feat: Last status'
+	# Must be retrieved before everything else.
+
+	set -l status_part $(get_status $status);
+
+	#|fE
+
+	#|fS "feat: Get Vi mode"
+
 	set -l path_bg 38394B;
 	set -l mode_hl;
 
@@ -39,10 +48,18 @@ function fish_prompt
 		echo -n "▐";
 	end
 
-    echo -e $(fancy_path);
-    set_color normal;
+	#|fE
 
-    set_color $mode_hl;
+	#|fS "chore: Render stuff"
+
+	echo -n $(fancy_path);
+	echo $status_part;
+
+	set_color normal;
+
+	set_color $mode_hl;
 	echo -n "╰ ";
-    set_color normal;
+	set_color normal;
+
+	#|fE
 end
