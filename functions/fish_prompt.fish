@@ -1,4 +1,13 @@
 function fish_prompt -d "Fancy prompt for fish."
+	if test -n "$transient"; and test $transient -eq 1;
+		set -g transient 0;
+
+		echo "";
+		echo (set_color $fish_color_comment)"󰌏 ";
+
+		return;
+	end
+
 	#|fS "feat: Last status'
 	# Must be retrieved before everything else.
 
