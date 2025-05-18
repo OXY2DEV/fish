@@ -1,17 +1,15 @@
+# Do not do greetings.
 set -U fish_greeting ""
 
-# Adds .cargo path
-#set -U fish_user_paths "~/.cargo/bin/:~/go/bin/ $fish_user_paths"
+# Used for `termux-x11`
+set -x TERMUX_X11_XSTARTUP "xfce4-session";
+set -x DISPLAY ":1";
 
-set -x TERMUX_X11_XSTARTUP "xfce4-session"
-set -x DISPLAY ":1"
-set -x EDITOR "nvim"
+set -x EDITOR "nvim";
 
-
-alias n "nvim"
-
-# Source: ~/.config/fish/README.md; Lines: 227-230
-zoxide init fish | source
+alias n 'nvim';
+alias l 'lsd';
+alias lz 'lazygit';
 
 
 # Source: ~/.config/fish/README.md; Lines: 235-246
@@ -64,19 +62,5 @@ function man --wraps man -d "Run man with added colors"
     command man $argv
 end
 
-# function reset-transient --on-event fish_postexec
-#     set -g TRANSIENT 0
-# end
-#
-# function maybe_execute
-#     if commandline --is-valid
-#         set -g TRANSIENT 1
-#         commandline -f repaint
-#     else
-#         set -g TRANSIENT 0
-#     end
-#
-#     commandline -f execute
-# end
-#
-# bind enter maybe_execute
+# Zoxide setup.
+zoxide init fish | source
