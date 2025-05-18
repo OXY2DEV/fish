@@ -9,6 +9,10 @@ function fish_prompt -d "Fancy prompt for fish."
 	if test -n "$transient"; and test $transient -eq 1;
 		set -g transient 0;
 
+		# Clear from Cursor to end of screen.
+		# This gets rid of visual artifacts.
+		printf "\e[0J";
+
 		echo $(fancy_timestamp);
 		echo (set_color $fish_color_comment)"󰌏 ";
 
