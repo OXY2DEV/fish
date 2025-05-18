@@ -2,7 +2,7 @@ function fish_prompt -d "Fancy prompt for fish."
 	#|fS "feat: Last status'
 	# Must be retrieved before everything else.
 
-	set -l status_part $(get_status $status);
+	set -l status_indicator $(get_status $status);
 
 	#|fE
 
@@ -15,64 +15,71 @@ function fish_prompt -d "Fancy prompt for fish."
 
 		echo $(fancy_timestamp);
 		echo (set_color $fish_color_comment)"󰌏 ";
-
-		return;
-	end
-
-	#|fS "feat: Get Vi mode"
-
-	set -l path_bg 38394B;
-	set -l mode_hl;
-
-	if test "$fish_bind_mode" = 'insert'
-		set_color 1E1E2E --background=CDD6F4;
-		echo -n "  ";
-
-		set mode_hl CDD6F4;
-		set_color $path_bg --background=CDD6F4;
-		echo -n "▐";
-	else if test "$fish_bind_mode" = 'visual'
-		set_color 1E1E2E --background=CBA6F7;
-		echo -n "  ";
-
-		set mode_hl CBA6F7;
-		set_color $path_bg --background=CBA6F7;
-		echo -n "▐";
-	else if test "$fish_bind_mode" = 'replace'
-		set_color 1E1E2E --background=F5C2E7;
-		echo -n "  ";
-
-		set mode_hl F5C2E7;
-		set_color $path_bg --background=F5C2E7;
-		echo -n "▐";
-	else if test "$fish_bind_mode" = 'replace_one'
-		set_color 1E1E2E --background=FAB387;
-		echo -n "  ";
-
-		set mode_hl FAB387;
-		set_color $path_bg --background=FAB387;
-		echo -n "▐";
 	else
-		set_color 1E1E2E --background=A6E3A1;
-		echo -n "  ";
+		set -l command_bg A6E3A1;
+		set -l insert_bg CDD6F4;
+		set -l visual_bg CBA6F7;
+		set -l replace_bg F5C2E7;
+		set -l replace_block_bg FAB387;
 
-		set mode_hl A6E3A1;
-		set_color $path_bg --background=A6E3A1;
-		echo -n "▐";
+		#|fS "feat: Top of prompt"
+
+		#|fS "style: Vi mode indicator"
+
+		set -l path_bg 38394B;
+
+		set -l mode_indicator_config \
+			"$(set_color 1E1E2E --background=$command_bg)  $(set_color $path_bg --background=$command_bg)▐" \
+			"$(set_color 1E1E2E --background=$insert_bg)  $(set_color $path_bg --background=$insert_bg)▐" \
+			"$(set_color 1E1E2E --background=$visual_bg)  $(set_color $path_bg --background=$visual_bg)▐" \
+			"$(set_color 1E1E2E --background=$replace_bg)  $(set_color $path_bg --background=$replace_bg)▐" \
+			"$(set_color 1E1E2E --background=$replace_block_bg)  $(set_color $path_bg --background=$replace_block_bg)▐" \
+		;
+
+		#|fE
+
+		#|fS "style: Last command duration"
+
+		set -l duration "󰣿 "$(math "$CMD_DURATION / 1000")"s";
+		set -l exec_time_config \
+			"$(set_color 1E1E2E --background=$command_bg) $duration " \
+			"$(set_color 1E1E2E --background=$insert_bg) $duration " \
+			"$(set_color 1E1E2E --background=$visual_bg) $duration " \
+			"$(set_color 1E1E2E --background=$replace_bg) $duration " \
+			"$(set_color 1E1E2E --background=$replace_block_bg) $duration " \
+		;
+
+		#|fE
+
+		set -l top_left "$(vi_mode $mode_indicator_config)$(fancy_path)$status_indicator";
+		set -l top_left_length $(string length --visible "$top_left");
+
+		set -l top_right "$(platform)$(vi_mode $exec_time_config)";
+		set -l top_right_length $(string length --visible "$top_right");
+
+		set -l divider_width $(math "$COLUMNS - ($top_left_length + $top_right_length)")
+
+		echo "$top_left$(string repeat -n $divider_width ' ')$top_right";
+		set_color normal;
+
+		#|fE
+
+		#|fS "style:  Prompt"
+
+		set -l path_bg 38394B;
+
+		set -l prompt_indicator_config \
+			"$(set_color $command_bg)" \
+			"$(set_color $insert_bg)" \
+			"$(set_color $visual_bg)" \
+			"$(set_color $replace_bg)" \
+			"$(set_color $replace_block_bg)" \
+		;
+
+		#|fE
+
+		# set_color $mode_hl;
+		echo -n "$(vi_mode $prompt_indicator_config)╰ ";
+		set_color normal;
 	end
-
-	#|fE
-
-	#|fS "chore: Render stuff"
-
-	echo -n $(fancy_path);
-	echo $status_part;
-
-	set_color normal;
-
-	set_color $mode_hl;
-	echo -n "╰ ";
-	set_color normal;
-
-	#|fE
 end
