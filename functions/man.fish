@@ -1,5 +1,14 @@
-# Defined in /data/data/com.termux/files/home/.config/fish/config.fish @ line 226
-function man --description 'Run man with added colors'
+# Bold mode start
+set -g man_bold -o A6E3A1 -b 313244
+# Bold mode separator
+set -g man_bold_bg -o 313244
+# Underline
+set -g man_underline -u 89B4FA
+
+set -g man_blink -o F38BA8
+set -g man_standout -b black FAB387
+
+function man --wraps man --description 'Run man with added colors'
     set -lx LESS_TERMCAP_mb (set_color -o $man_blink) # Blink mode
     set -lx LESS_TERMCAP_md (set_color -o $man_bold)(printf " ")  # Bold mode
 
