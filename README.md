@@ -2,7 +2,7 @@
 
 ![demo](./assets/fish.png)
 
-Configuration files for the `Friendly interactive shell`(fish) to he used in `MacOS` & `Termux`.
+Configuration files for the `Friendly interactive shell`(fish) to be used in `MacOS` & `Termux`.
 
 ## 📦 Requirements
 
