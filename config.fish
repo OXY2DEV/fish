@@ -12,6 +12,8 @@ alias l 'lsd';
 alias lz 'lazygit';
 alias ts 'tree-sitter';
 
+alias cr 'cargo';
+
 
 # Zoxide setup.
 zoxide init fish | source
