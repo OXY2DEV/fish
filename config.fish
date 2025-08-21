@@ -13,6 +13,8 @@ alias ts 'tree-sitter';
 
 alias cr 'cargo';
 
+alias dt 'dotfiles';
+
 
 # Zoxide setup.
 zoxide init fish | source
