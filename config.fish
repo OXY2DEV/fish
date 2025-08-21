@@ -8,7 +8,6 @@ set -x DISPLAY ":1";
 set -x EDITOR "nvim";
 
 alias n 'nvim';
-alias l 'lsd';
 alias lz 'lazygit';
 alias ts 'tree-sitter';
 
