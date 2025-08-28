@@ -12,8 +12,14 @@ alias lz 'lazygit';
 alias ts 'tree-sitter';
 
 alias cr 'cargo';
-
 alias dt 'dotfiles';
+
+# FIX(MacOS, Lazygit): Change config directory for `lazygit`.
+set -l uname $(uname -a);
+
+if test $(string match --regex "Darwin" $uname);
+	export XDG_CONFIG_DIR=$HOME/.config;
+end
 
 
 # Zoxide setup.
