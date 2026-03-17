@@ -14,6 +14,9 @@ alias ts 'tree-sitter';
 alias cr 'cargo';
 alias dt 'dotfiles';
 
+# feat(cargo): Add cargo binary path to `$PATH`
+set --append PATH $HOME/.cargo/bin/
+
 # FIX(MacOS, Lazygit): Change config directory for `lazygit`.
 set -l uname $(uname -a);
 
@@ -21,6 +24,7 @@ if test $(string match --regex "Darwin" $uname);
 	export XDG_CONFIG_HOME=$HOME/.config;
 end
 
+fish_config theme choose catppuccin-mocha
 
 # Zoxide setup.
 zoxide init fish | source
