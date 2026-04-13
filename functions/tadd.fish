@@ -2,6 +2,9 @@ function tadd -d "Add `.torrent` files to `transmission-remote`"
 	if not type -q transmission-remote;
 		echo "`transmission-remote` not found!";
 		return;
+	else if not pgrep -l transmission-daemon;
+		echo "Daemon not started."
+		return;
 	end
 
 	set -l delete "true";
@@ -15,9 +18,7 @@ function tadd -d "Add `.torrent` files to `transmission-remote`"
 
 	for torrent in $argv;
 		if test "$torrent" != "--no-delete"; and test "$torrent" != "-n";
-			transmission-remote --add $torrent;
-
-			if test "$delete" = "true";
+			if transmission-remote --add $torrent; and test "$delete" = "true";
 				rm $torrent;
 			end
 		end
