@@ -59,6 +59,10 @@ function fish_prompt -d "Fancy prompt for fish."
 
 		set -l divider_width $(math "$COLUMNS - ($top_left_length + $top_right_length)")
 
+		if test $divider_width -le 0;
+			set divider_width 0;
+		end
+
 		echo "$top_left$(string repeat -n $divider_width ' ')$top_right";
 		set_color normal;
 
