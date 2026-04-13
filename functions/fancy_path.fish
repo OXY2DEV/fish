@@ -25,6 +25,13 @@ function handle_path_part -d "Decorated path part"
 	end
 end
 
+function handle_base_part -d "Decorated base name"
+    set -q $max_base_len; or set max_base_len $(math --scale=0 "$COLUMNS * 0.4");
+    set -q $basename_color; or set basename_color $(set_color 74C7EC);
+
+	set -l final_path $(string shorten --left --max $max_base_len $argv[1]);
+	echo $basename_color$final_path;
+end
 
 
 function fancy_path -d "Fancy path viewer"
@@ -49,14 +56,13 @@ function fancy_path -d "Fancy path viewer"
 	end
 
 	set -l basename $(path basename $path);
-    set -q $basename_color; or set basename_color $(set_color 74C7EC);
 
 	set -l output_path;
 	set -l readable_path $(string replace $HOME '~' $path);
 
 	for part in $(string split "/" $readable_path);
 		if test "$part" = "$basename";
-			set output_path $(string join $path_separator $output_path $basename_color$part);
+			set output_path $(string join $path_separator $output_path $(handle_base_part $part));
 		else
 			set output_path $(string join $path_separator $output_path $(handle_path_part $part));
 		end
