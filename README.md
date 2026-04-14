@@ -63,3 +63,11 @@ The relevant files are,
 
 Decorations for man pages are provided from [functions/man.fish](./functions/man.fish).
 
+## 💡 Generate completions
+
+Run this command to make fish update the completion,
+
+```fish
+fish_update_completions
+```
+
