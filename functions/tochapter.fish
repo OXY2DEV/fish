@@ -9,7 +9,7 @@ function generate;
 		else if test -f $entry; and string match -qr '[cC]hapter.*\.zip$' $entry;
 			set is_valid "false";
 			break;
-		else if test -d $entry; and string match -qr '[cC]hapter*' $entry; and test $(count "$entry/*") -gt 1;
+		else if test -d $entry; and string match -qr '[cC]hapter' $entry; and test $(count $(ls $entry)) -gt 0;
 			set is_valid "false";
 			break;
 		end
@@ -17,7 +17,7 @@ function generate;
 
 	if test $is_valid = "true";
 		echo "valid: $argv[1]";
-		command -q mkdir chapter;
+		mkdir chapter;
 
 		for file in *;
 			if test -f $file; and not string match -qr '[cC]over' $file; and string match -qr '\.(jpg|jpeg|png|webp)$' $file;
@@ -32,7 +32,15 @@ end
 
 
 function tochapter -d "Group image into chapters for subdirectories"
-	for entry in *;
+	set -l targets;
+
+	if test $(count $argv) -gt 0;
+		set targets $argv;
+	else
+		set targets *;
+	end
+
+	for entry in $targets;
 		if test -d $entry;
 			generate $entry;
 		end
