@@ -14,6 +14,9 @@ alias ts 'tree-sitter';
 alias cr 'cargo';
 alias dt 'dotfiles';
 
+# NOTE: `yt-dlp` aliases
+alias ya "yt-dlp -x -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"; # Downloads *playlist* in a separate directory.
+
 # feat(cargo): Add cargo binary path to `$PATH`
 set --append PATH $HOME/.cargo/bin/
 
