@@ -1,14 +1,14 @@
 function l -d "Lists directories through `eza`, `lsd` or `ls`"
 	if type -q eza
 		if test (count $argv) -eq 0
-			command eza --icons --group-directories-first $argv;
+			command eza --icons --group-directories-first -- $argv;
 		else
-			command eza --icons $argv;
+			command eza --icons -- $argv;
 		end
 	else if type -q lsd
-		command lsd $argv;
+		command lsd -- $argv;
 	else
-		command ls $argv;
+		command ls -- $argv;
 	end
 end
 
