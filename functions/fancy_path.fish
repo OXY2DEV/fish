@@ -1,6 +1,11 @@
 function handle_path_part -d "Decorated path part"
     set -q $raw_path_parts; or set raw_path_parts \
 		'\.nvim$' \
+		'\-core$' \
+	;
+    set -q $raw_path_suffix; or set raw_path_suffix \
+		'^src$' \
+		'^lua$' \
 	;
     set -q $max_part_len; or set max_part_len 1;
 
@@ -11,6 +16,13 @@ function handle_path_part -d "Decorated path part"
 
 	for entry in $raw_path_parts;
 		if test $(string match --regex $entry "$argv[1]");
+			echo $raw_path_color$argv[1];
+			return;
+		end
+	end
+
+	for entry in $raw_path_suffix;
+		if test $(string match --regex $entry "$argv[2]");
 			echo $raw_path_color$argv[1];
 			return;
 		end
@@ -60,11 +72,16 @@ function fancy_path -d "Fancy path viewer"
 	set -l output_path;
 	set -l readable_path $(string replace $HOME '~' $path);
 
-	for part in $(string split "/" $readable_path);
+	set -l path_parts $(string split "/" $readable_path);
+
+	for p in $(seq (count $path_parts));
+		set -l part $path_parts[$p];
+		set -l next_part $path_parts[$(math $p + 1)];
+
 		if test "$part" = "$basename";
-			set output_path $(string join $path_separator $output_path $(handle_base_part $part));
+			set output_path $(string join $path_separator $output_path $(handle_base_part $part $next_part));
 		else
-			set output_path $(string join $path_separator $output_path $(handle_path_part $part));
+			set output_path $(string join $path_separator $output_path $(handle_path_part $part $next_part));
 		end
 	end
 
